@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import kg.auth_service.common.Role;
 import lombok.*;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
@@ -18,6 +20,15 @@ public class User {
     private String number;
 
     private String password;
+    private UUID clientId;
+
+    public void setClientId(UUID clientId) {
+        this.clientId = clientId;
+    }
+
+    public UUID getClientId(UUID clientId) {
+        return this.clientId;
+    }
 
     public void setNumber(String number) {
         this.number = number;
