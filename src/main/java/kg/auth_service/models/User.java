@@ -20,42 +20,41 @@ public class User {
     private String number;
 
     private String password;
-    private UUID clientId;
+    @Column(nullable = false)
+    private UUID clientId; // Добавляем явное указание в БД
+
+    public UUID getClientId() {
+        return clientId;
+    }
 
     public void setClientId(UUID clientId) {
         this.clientId = clientId;
-    }
-
-    public UUID getClientId(UUID clientId) {
-        return this.clientId;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     public String getNumber() {
         return number;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public Long getId() {
         return id;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public Role getRole() {
+        return role;
+    }
     public void setRole(Role role) {
         this.role = role;
+    }
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {

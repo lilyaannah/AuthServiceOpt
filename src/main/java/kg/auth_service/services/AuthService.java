@@ -16,7 +16,6 @@ public class AuthService {
     }
 
     public boolean authenticate(LoginRequest loginRequest) {
-        // Находим пользователя по номеру
         Optional<User> user = userRepository.findByNumber(loginRequest.getNumber());
 
         // Если пользователь существует и пароль совпадает, возвращаем true
@@ -24,10 +23,14 @@ public class AuthService {
     }
 
     public void registerUser(LoginRequest loginRequest) {
+        if(authenticate(loginRequest)){
+            throw new IllegalArgumentException("Пользователь с таким номером уже зарегистрирован!");
+        }
         User user = new User();
         user.setNumber(loginRequest.getNumber());
         user.setPassword(loginRequest.getPassword());
         user.setClientId(loginRequest.getClientId());
+        System.out.println("ClientId: " + loginRequest.getClientId());
         user.setRole(Role.USER);
         userRepository.save(user);
     }
